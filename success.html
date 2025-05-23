@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservation Success</title>
+</head>
+<body>
+  <h1 id="successMessage">Loading...</h1>
+
+  <script>
+    // JavaScript to get 'table' from URL and display confirmation message
+    const params = new URLSearchParams(window.location.search);
+    const table = params.get('table');
+    const messageEl = document.getElementById('successMessage');
+
+    if (table) {
+      messageEl.innerText = `You've successfully reserved ${table}`;
+    } else {
+      messageEl.innerText = "Reservation complete!";
+    }
+  </script>
+  
+</body>
+</html>

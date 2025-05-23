@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Overtyme Bar & Grill</title>
+  <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        scroll-behavior: smooth;
+        background: #0a0a0a;
+        color: #ffffff;
+      }
+      
+      /* Navbar Styles */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #000000;
+        z-index: 1000;
+        border-bottom: 3px solid #ff0000;
+      }
+      
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 18px;
+      }
+      
+      .nav-logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #ff0000;
+        text-shadow: 1px 1px 3px #fff;
+      }
+      
+      .nav-toggle {
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: none;
+        color: #ffcc00;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 18px;
+      }
+      
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 10px 0;
+        font-weight: bold;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+      }
+      
+      .nav-links a:hover {
+        color: #ffcc00;
+        border-bottom: 2px solid #ff0000;
+      }
+      
+      /* Mobile Styles */
+      @media screen and (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid #ff0000;
+  }
+
+  .nav-links a {
+    padding: 12px 0;
+    border-top: 1px solid #222;
+  }
+
+  #logo {
+        width: 460px;
+        animation: pulse 2s infinite;
+        z-index: 10;
+      }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  /* Dropdown Styling */
+.carousel-dropdown summary {
+  background-color: #222;
+  color: #fff;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid #ff0000;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Optional: arrow style */
+.carousel-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.carousel-dropdown summary::after {
+  content: ' ▼';
+  font-size: 14px;
+}
+
+/* Carousel Container Styling */
+.carousel-container {
+  margin-top: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  border-top: 2px solid #ff0000;
+  padding: 10px 0;
+}
+
+/* Track to arrange images horizontally */
+.carousel-track {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+/* Images */
+.carousel-track img {
+  max-height: 200px;
+  width: auto;
+  flex-shrink: 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-track img:hover {
+  transform: scale(1.05);
+}
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* horizontally center images */
+  gap: 10px;
+  padding: 10px;
+}
+
+.image-gallery img {
+  max-width: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.flavors {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+@keyframes scroll-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+  /* Reservation Map and Tables on Mobile */
+  .reservation-map {
+    position: relative;
+  }
+
+    .hover-table {
+    position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        font-size: 12px;
+        background: #ff0000;
+        border: 2px solid #ffcc00;
+        cursor: pointer;
+        box-shadow: 0 0 6px #fff;
+        transition: transform 0.3s ease;
+      }
+
+
+  .table1  { top: 24.5%;  left: 3.7%; }
+  .table2  { top: 42%;  left: 3.7%; }
+  .table3  { top: 59.3%;  left: 3.7%; }
+  .table4  { top: 83%;  left: 4%; }
+  .table5  { top: 84.7%;  left: 14.23%; }
+  .table6  { top: 84.7%;  left: 22.4%; }
+  .table7  { top: 84.7%;  left: 30.5%; }
+  .table8  { top: 61.4%; left: 15.46%; }
+  .table9  { top: 57.9%; left: 24.1%; }
+  .table10 { top: 43.2%;  left: 15.4%; }
+  .table11 { top: 34.9%; left: 24.2%; }
+  .table12 { top: 25.3%;  left: 15.5%; }
+  .table13 { top: 8.6%;   left: 13%; }
+  .table14 { top: 8.6%;   left: 22%; }
+  .table15 { top: 35%; left: 33.6%; }
+  .table16 { top: 59.4%; left: 33.7%; }
+  .table17 { top: 37.9%; left: 40.6%; }
+  .table18 { top: 54.6%; left: 40.6%; }
+  .table19 { top: 45.9%; left: 47.6%; }
+  .table20 { top: 38.2%; left: 54.7%; }
+  .table21 { top: 54.9%; left: 54.7%; }
+  .table22 { top: 84.7%;  left: 65.3%; }
+  .table23 { top: 84.7%;  left: 73.2%; }
+  .table24 { top: 84.7%;  left: 81.2%; }
+  .table25 { top: 59.3%; left: 92.5%; }
+  .table26 { top: 43%;  left: 92.5%; }
+  .table27 { top: 24.3%; left: 92.5%; }
+  .table28 { top: 56.9%;  left: 78.4%; }
+  .table29 { top: 56.8%;  left: 67.57%; }
+  .table30 { top: 37.4%; left: 78.4%; }
+  .table31 { top: 37.4%; left: 67.57%; }
+  .table32 { top: 17%; left: 65.7%; }
+  .table33 { top: 16.7%; left: 73.4%; }
+  .table34 { top: 17%; left: 80.1%; }
+}
+
+
+
+      @media screen and (min-width: 1024px) { 
+  .reservation-map {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .smoke {
+    height: 750px;
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .flavors {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .mapseat {
+    max-width: 1700px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #logo {
+  width: 1150px; /* bigger than 460px */
+  animation: pulse 2s infinite;
+  z-index: 10;
+}
+
+
+  .hover-table {
+    position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        font-size: 12px;
+        background: #ff0000;
+        border: 2px solid #ffcc00;
+        cursor: pointer;
+        box-shadow: 0 0 6px #fff;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 14px;
+      }
+
+  /* Table Positions for Desktop */
+.table1 { top: 26%;  left: 23.8%; height: 40px; width: 40px; }
+.table2  { top: 43.8%;  left: 23.8%; height: 40px; width: 40px; }
+.table3  { top: 61.2%;  left: 23.8%; height: 40px; width: 40px; }
+.table4  { top: 86%;  left: 23.8%; height: 40px; width: 40px; }
+.table5  { top: 86%;  left: 30.1%; height: 40px; width: 40px; }
+.table6  { top: 86%;  left: 34.5%; height: 40px; width: 40px; }
+.table7  { top: 86%;  left: 39.2%; height: 40px; width: 40px; }
+.table8  { top: 62.9%; left: 30.5%; height: 40px; width: 40px; }
+.table9  { top: 60%; left: 35.5%; height: 40px; width: 40px; }
+.table10 { top: 45%;  left: 30.5%; height: 40px; width: 40px; }
+.table11 { top: 36%; left: 35.5%; height: 40px; width: 40px; }
+.table12 { top: 26.7%;  left: 30.5%; height: 40px; width: 40px; }
+.table13 { top: 9.4%;   left: 29.3%; height: 40px; width: 40px; }
+.table14 { top: 9.4%;   left: 34.3%; height: 40px; width: 40px; }
+.table15 { top: 36%; left: 40.9%; height: 40px; width: 40px; }
+.table16 { top: 60.5%; left: 40.9%; height: 40px; width: 40px; }
+.table17 { top: 38.9%; left: 44.7%; height: 40px; width: 40px; }
+.table18 { top: 56.3%; left: 44.7%; height: 40px; width: 40px; }
+.table19 { top: 47.6%; left: 48.7%; height: 40px; width: 40px; }
+.table20 { top: 39.1%; left: 52.7%; height: 40px; width: 40px; }
+.table21 { top: 56.5%; left: 52.7%; height: 40px; width: 40px; }
+.table22 { top: 86.3%;  left: 58.8%; height: 40px; width: 40px; }
+.table23 { top: 86.3%;  left: 63.3%; height: 40px; width: 40px; }
+.table24 { top: 86.3%;  left: 67.9%; height: 40px; width: 40px; }
+.table25 { top: 60.3%; left: 74.4%; height: 40px; width: 40px; }
+.table26 { top: 44%;  left: 74.4%; height: 40px; width: 40px; }
+.table27 { top: 25.3%; left: 74.4%; height: 40px; width: 40px; }
+.table28 { top: 58.2%;  left: 66.2%; height: 40px; width: 40px; }
+.table29 { top: 58.1%;  left: 60.1%; height: 40px; width: 40px; }
+.table30 { top: 38.3%; left: 66.1%; height: 40px; width: 40px; }
+.table31 { top: 38.3%; left: 60.1%; height: 40px; width: 40px; }
+.table32 { top: 17.9%; left: 59%; height: 40px; width: 40px; }
+.table33 { top: 17.9%; left: 63.2%; height: 40px; width: 40px; }
+.table34 { top: 17.9%; left: 67.2%; height: 40px; width: 40px; }
+  }
+
+
+
+      header {
+        height: 100vh;
+        background: url('https://your-background-image.jpg') no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      
+      section {
+        padding: 80px 20px 40px;
+        text-align: center;
+        border-top: 3px solid #ff0000;
+      }
+      
+      section h2 {
+        color: #ffcc00;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px #000;
+      }
+      
+      .events {
+        max-width: 90%;
+        margin: 10px auto;
+        border: 2px solid #ff0000;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      .events img {
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.4s ease;
+      }
+      
+      .events img:hover {
+        transform: scale(1.02);
+      }
+
+      .menulist {
+        max-width: 90%;
+        margin: 10px auto;
+        border: 2px solid #ff0000;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      .menulist img {
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.4s ease;
+      }
+      
+      .menulist img:hover {
+        transform: scale(1.02);
+      }
+      
+      .menu-section .slideshow {
+        margin-bottom: 20px;
+      }
+      
+      .reservation-map {
+        max-width: 100%;
+        position: relative;
+        border: 2px solid #ff0000;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .reservation-map img {
+        width: 100%;
+      }
+      
+      .hover-table:hover {
+        transform: scale(1.5);
+        color: white;
+      }
+
+      
+      /* === Horizontal Auto-Scroll Gallery (Scoped) === */
+/* === Horizontal Scroll Gallery === */
+.horizontal-scroll-gallery {
+    width: 100%;
+    overflow-x: hidden;
+    padding: 20px 0;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .scroll-wrapper {
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  .scroll-container {
+    display: flex;
+    gap: 65px;
+    padding: 10px;
+    animation: scroll-left 70s linear infinite;
+    animation-play-state: running;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+  }
+
+  /* Pause auto-scroll on hover */
+  .scroll-container:hover {
+    animation-play-state: paused;
+  }
+
+  .scroll-container img {
+    height: 180px;
+    width: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.5s ease;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .scroll-container img:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-container img {
+      height: 140px;
+    }
+  }
+
+  /* === Lightbox Overlay === */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  /* Lightbox Image */
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    user-select: none;
+  }
+
+  /* Close Button */
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    user-select: none;
+  }
+
+  /* Arrows */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 30px;
+    border-radius: 50%;
+    user-select: none;
+  }
+
+  .arrow.left {
+    left: 10px;
+  }
+
+  .arrow.right {
+    right: 10px;
+  }
+
+  .arrow:hover,
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .main-dropdown-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .main-dropdown summary {
+      font-size: 28px;
+      font-weight: bold;
+      color: #FFD700; /* Bright yellow */
+      padding: 15px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      list-style: none;
+      text-align: center;
+    }
+
+    .main-dropdown summary::-webkit-details-marker,
+    .main-dropdown summary::marker {
+      display: none; /* removes dropdown arrow */
+    }
+
+    .main-dropdown[open] > summary {
+      background: #444;
+    }
+
+  
+
+
+      
+      footer {
+        background-color: #000;
+        color: #ffffff;
+        text-align: center;
+        padding: 1rem 0;
+        border-top: 3px solid #ff0000;
+        font-size: 0.9rem;
+      }
+      
+      footer p {
+        margin: 0;
+        color: #ffcc00;
+      }
+
+      .modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.popuplogo {
+  margin-top: -90px;
+}
+
+
+      
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"></div>
+    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#logo" onclick="closeMenu()">Home</a>
+      <a href="#events" onclick="closeMenu()">Events</a>
+      <a href="#menu" onclick="closeMenu()">Menu</a>
+      <a href="#reservations" onclick="closeMenu()">Reservations</a>
+      <a href="#hookahs" onclick="closeMenu()">Hookahs</a>
+      <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Header -->
+<header>
+  <img id="logo" src="./images/FinalOT.png" alt="Overtyme Bar & Grill Logo"/>
+</header>
+
+<!-- Events Section -->
+<section id="events">
+  <h2>Upcoming Events</h2>
+  <div class="events">
+    <img src="./images/" alt="Events">
+  </div>
+</section>
+
+
+<details class="main-dropdown">
+  <summary>(Tap To View Menu)</summary>
+
+  <!-- 10 dropdown boxes -->
+  <details class="sub-dropdown">
+    <summary>Appetizers</summary>
+    <div class="image-gallery">
+      <img src="./images/sample1.jpg" alt="1">
+      <img src="./images/sample2.jpg" alt="2">
+      <img src="./images/sample1.jpg" alt="3">
+      <img src="./images/sample2.jpg" alt="4">
+      <img src="./images/sample1.jpg" alt="5">
+      <img src="./images/sample2.jpg" alt="6">
+      <img src="./images/sample1.jpg" alt="7">
+      <img src="./images/sample2.jpg" alt="8">
+      <img src="./images/sample1.jpg" alt="9">
+      <img src="./images/sample2.jpg" alt="10">
+      <img src="./images/sample1.jpg" alt="11">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Main Courses</summary>
+    <div class="image-gallery">
+      <img src="./images/sample3.jpg" alt="3">
+      <img src="./images/sample4.jpg" alt="4">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Desserts</summary>
+    <div class="image-gallery">
+      <img src="./images/sample5.jpg" alt="5">
+      <img src="./images/sample6.jpg" alt="6">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Drinks</summary>
+    <div class="image-gallery">
+      <img src="./images/sample7.jpg" alt="7">
+      <img src="./images/sample8.jpg" alt="8">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Combos</summary>
+    <div class="image-gallery">
+      <img src="./images/sample9.jpg" alt="9">
+      <img src="./images/sample10.jpg" alt="10">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Kids Menu</summary>
+    <div class="image-gallery">
+      <img src="./images/sample11.jpg" alt="11">
+      <img src="./images/sample12.jpg" alt="12">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Family Packs</summary>
+    <div class="image-gallery">
+      <img src="./images/sample13.jpg" alt="13">
+      <img src="./images/sample14.jpg" alt="14">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Wings</summary>
+    <div class="image-gallery">
+      <img src="./images/sample15.jpg" alt="15">
+      <img src="./images/sample16.jpg" alt="16">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Sides</summary>
+    <div class="image-gallery">
+      <img src="./images/sample17.jpg" alt="17">
+      <img src="./images/sample18.jpg" alt="18">
+    </div>
+  </details>
+
+  <details class="sub-dropdown">
+    <summary>Specials</summary>
+    <div class="image-gallery">
+      <img src="./images/sample19.jpg" alt="19">
+      <img src="./images/sample20.jpg" alt="20">
+    </div>
+  </details>
+
+</details>
+
+
+<!-- Reservations Section -->
+<section id="reservations">
+  <h2>Reserve Your Table</h2>
+  <div class="reservation-map">
+    <img class="mapseat" src="./images/tablerental.png" alt="Table Layout">
+    <div class="hover-table table1" onclick="reserve('Table 1')">1</div>
+    <div class="hover-table table2" onclick="reserve('Table 2')">2</div>
+    <div class="hover-table table3" onclick="reserve('Table 3')">3</div>
+    <div class="hover-table table4" onclick="reserve('Table 4')">4</div>
+    <div class="hover-table table5" onclick="reserve('Table 5')">5</div>
+    <div class="hover-table table6" onclick="reserve('Table 6')">6</div>
+    <div class="hover-table table7" onclick="reserve('Table 7')">7</div>
+    <div class="hover-table table8" onclick="reserve('Table 8')">8</div>
+    <div class="hover-table table9" onclick="reserve('Table 9')">9</div>
+    <div class="hover-table table10" onclick="reserve('Table 10')">10</div>
+    <div class="hover-table table11" onclick="reserve('Table 11')">11</div>
+    <div class="hover-table table12" onclick="reserve('Table 12')">12</div>
+    <div class="hover-table table13" onclick="reserve('Table 13')">13</div>
+    <div class="hover-table table14" onclick="reserve('Table 14')">14</div>
+    <div class="hover-table table15" onclick="reserve('Table 15')">15</div>
+    <div class="hover-table table16" onclick="reserve('Table 16')">16</div>
+    <div class="hover-table table17" onclick="reserve('Table 17')">17</div>
+    <div class="hover-table table18" onclick="reserve('Table 18')">18</div>
+    <div class="hover-table table19" onclick="reserve('Table 19')">19</div>
+    <div class="hover-table table20" onclick="reserve('Table 20')">20</div>
+    <div class="hover-table table21" onclick="reserve('Table 21')">21</div>
+    <div class="hover-table table22" onclick="reserve('Table 22')">22</div>
+    <div class="hover-table table23" onclick="reserve('Table 23')">23</div>
+    <div class="hover-table table24" onclick="reserve('Table 24')">24</div>
+    <div class="hover-table table25" onclick="reserve('Table 25')">25</div>
+    <div class="hover-table table26" onclick="reserve('Table 26')">26</div>
+    <div class="hover-table table27" onclick="reserve('Table 27')">27</div>
+    <div class="hover-table table28" onclick="reserve('Table 28')">28</div>
+    <div class="hover-table table29" onclick="reserve('Table 29')">29</div>
+    <div class="hover-table table30" onclick="reserve('Table 30')">30</div>
+    <div class="hover-table table31" onclick="reserve('Table 31')">31</div>
+    <div class="hover-table table32" onclick="reserve('Table 32')">32</div>
+    <div class="hover-table table33" onclick="reserve('Table 33')">33</div>
+    <div class="hover-table table34" onclick="reserve('Table 34')">34</div>
+  </div>
+</section>
+
+
+<!-- Stripe Reservation Modal -->
+<section>
+  <div id="reservationModal" class="modal" style="display:none; background: rgba(0,0,0,0.5); position: fixed; inset: 0; z-index: 9999; overflow: auto;">
+    <div class="modal-content" style="padding: 20px; border-radius: 10px; background: white; max-width: 400px; margin: 100px auto; position: relative;">
+      <span class="close" onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer;">&times;</span>
+
+      <h3 id="modalTitle" style="margin-bottom: 10px;">Reserve Your Table</h3>
+
+      <p style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">
+        Selected Table: <span id="selectedTableDisplay"></span>
+      </p>
+
+      <img class="popuplogo" src="./images/FinalOT.png" alt="Overtyme Bar & Grill Logo"
+           style="width: 100%; border-radius: 10px; margin-bottom: 15px;" />
+
+      <label for="modalTableNumber"><strong>Table Number:</strong></label><br/>
+      <input type="text" id="modalTableNumber" name="modalTableNumber" readonly style="width: 100%; margin-bottom: 10px; font-weight: bold; font-size: 1.1rem;" />
+
+      <form id="reservation-form">
+        <label for="userName"><strong>Full Name:</strong></label><br/>
+        <input type="text" id="userName" name="userName" placeholder="Enter your full name"
+               style="width: 100%; margin-bottom: 10px;" required />
+
+        <label for="userPhone"><strong>Phone Number:</strong></label><br/>
+        <input
+          type="tel"
+          id="userPhone"
+          name="userPhone"
+          placeholder="(123) 456-7890"
+          style="width: 100%; margin-bottom: 10px;"
+          required
+          maxlength="14"
+        />
+
+        <label for="price"><strong>Price (USD):</strong></label><br/>
+        <input type="number" id="price" name="price" step="0.01" value="20.00"
+               style="width: 100%; margin-bottom: 10px;" required />
+
+        <label for="date"><strong>Date:</strong></label><br/>
+        <input type="date" id="date" name="date" style="width: 100%; margin-bottom: 10px;" required />
+
+        <label for="timeFrame"><strong>Time Frame:</strong></label><br/>
+        <input type="text" id="timeFrame" name="timeFrame"
+               style="width: 100%; margin-bottom: 15px;" readonly required />
+
+        <label for="tableId"><strong>Table ID:</strong></label><br/>
+        <input type="text" id="tableId" name="tableId" style="width: 100%; margin-bottom: 15px;" readonly required />
+
+        <label><strong>Credit Card:</strong></label>
+        <div id="card-element" style="padding: 10px 0; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px;"></div>
+
+        
+
+        <div id="payment-request-button" style="margin-bottom: 15px;"></div>
+
+        <button id="checkoutButton" type="submit" style="padding: 10px 20px; cursor: pointer;">Pay & Reserve</button>
+        <button type="button" onclick="closeModal()" style="padding: 10px 20px; margin-left: 10px; background-color: #ccc; cursor: pointer;">Cancel</button>
+      </form>
+
+      <div id="payment-message" style="margin-top: 15px; font-weight: bold; color: green;"></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Hookah Section -->
+<section id="hookahs">
+  <h2>Hookah Lounge</h2>
+  <img class="smoke" id="logo" src="./images/ck.png" alt="Hookah Logo" />
+  <br/><br/>
+  <img class="flavors" src="./images/att.TCo9td7hBxoPQhuOBYKSGc2MHXooiXht3FINHVO88PY.jpeg" alt="Hookah Flavors Menu" style="width: 90%; border-radius: 10px;">
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery">
+  <div class="horizontal-scroll-gallery">
+    <div class="scroll-container">
+      <img src="./images/4450565051bf98b7a7c3705b8b5f477a.JPEG" alt="Image 1" onclick="openLightbox(0)">
+      <img src="./images/59f818dddff27446eee143b30fb545e7.JPEG" alt="Image 2" onclick="openLightbox(1)">
+      <img src="./images/84b997cb64ea7bb2cb4913bd803c5da7.JPEG" alt="Image 3" onclick="openLightbox(2)">
+      <img src="./images/sample4.jpeg" alt="Image 4" onclick="openLightbox(4)">
+      <img src="./images/sample5.jpeg" alt="Image 5" onclick="openLightbox(5)">
+      <img src="./images/sample6.jpeg" alt="Image 6" onclick="openLightbox(6)">
+      <img src="./images/sample4.jpeg" alt="Image 7" onclick="openLightbox(7)">
+      <img src="./images/sample5.jpeg" alt="Image 8" onclick="openLightbox(8)">
+      <img src="./images/sample6.jpeg" alt="Image 9" onclick="openLightbox(9)">
+      <img src="./images/sample4.jpeg" alt="Image 10" onclick="openLightbox(10)">
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="Large View">
+  <button class="arrow left">&#10094;</button>
+  <button class="arrow right">&#10095;</button>
+</div>
+
+<footer>
+  <p>&copy; 2025 OvertymeBar&Grill. All Rights Reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const stripe = Stripe('pk_test_YourPublicKeyHere'); // Replace with your real public key
+  const elements = stripe.elements();
+  const cardElement = elements.create('card');
+  cardElement.mount('#card-element');
+
+  const form = document.getElementById('reservation-form');
+  const paymentMessage = document.getElementById('payment-message');
+  const phoneInput = document.getElementById('userPhone');
+  let selectedTableId = null;
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function(e) {
+      let input = e.target.value.replace(/\D/g, '').substring(0, 10);
+      let formatted = '';
+      if (input.length > 0) formatted += '(' + input.substring(0, 3);
+      if (input.length >= 4) formatted += ') ' + input.substring(3, 6);
+      if (input.length >= 7) formatted += '-' + input.substring(6);
+      e.target.value = formatted;
+    });
+  }
+
+  const images = Array.from(document.querySelectorAll('.scroll-container img'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.querySelector('.lightbox-close');
+  const leftArrow = document.querySelector('.arrow.left');
+  const rightArrow = document.querySelector('.arrow.right');
+  let currentIndex = 0;
+
+  window.openLightbox = function(index) {
+    currentIndex = index;
+    showImage();
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  function showImage() {
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt;
+  }
+
+  function changeImage(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    showImage();
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (lightbox) lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  if (leftArrow) leftArrow.addEventListener('click', e => { e.stopPropagation(); changeImage(-1); });
+  if (rightArrow) rightArrow.addEventListener('click', e => { e.stopPropagation(); changeImage(1); });
+
+  window.addEventListener('keydown', e => {
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'ArrowRight') changeImage(1);
+      else if (e.key === 'ArrowLeft') changeImage(-1);
+      else if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  let startX = 0;
+  if (lightboxImg) {
+    lightboxImg.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    lightboxImg.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) changeImage(1);
+      else if (endX - startX > 50) changeImage(-1);
+    });
+  }
+
+  window.toggleMenu = function() {
+    document.getElementById('navLinks').classList.toggle('show');
+  };
+
+  window.closeMenu = function() {
+    const menu = document.getElementById('navLinks');
+    if (menu && menu.classList.contains('show')) menu.classList.remove('show');
+  };
+
+  window.reserve = function(tableName) {
+    selectedTableId = tableName;
+    document.getElementById("selectedTableDisplay").innerText = tableName;
+    document.getElementById('modalTableNumber').value = tableName;
+
+    ['userName', 'userPhone', 'price'].forEach(id => document.getElementById(id).value = '');
+
+    const now = new Date();
+    const endTime = new Date(now);
+    endTime.setHours(2, 0, 0, 0);
+    if (now.getHours() >= 2) endTime.setDate(endTime.getDate() + 1);
+
+    const formatTime = (date) => {
+      let hours = date.getHours();
+      const minutes = date.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      return `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    };
+
+    document.getElementById('date').value = now.toISOString().split('T')[0];
+    document.getElementById('timeFrame').value = `${formatTime(now)} - ${formatTime(endTime)}`;
+    document.getElementById("reservationModal").style.display = "block";
+  };
+
+  window.openModal = function(tableId, timeFrame) {
+    document.getElementById('reservationModal').style.display = 'block';
+    document.getElementById('selectedTableDisplay').textContent = tableId;
+    document.getElementById('tableId').value = tableId;
+    document.getElementById('timeFrame').value = timeFrame;
+    selectedTableId = tableId;
+  };
+
+  window.closeModal = function() {
+    document.getElementById("reservationModal").style.display = "none";
+  };
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const price = parseFloat(document.getElementById('price').value) * 100;
+
+      try {
+        // 1. Create Stripe Payment Intent
+        const response = await fetch('/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: Math.round(price) })
+        });
+        const data = await response.json();
+
+        const { paymentIntent, error } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: document.getElementById('userName').value,
+              phone: document.getElementById('userPhone').value,
+            }
+          }
+        });
+
+        if (error) {
+          paymentMessage.style.color = 'red';
+          paymentMessage.textContent = error.message;
+          return;
+        }
+
+        // 2. Submit reservation data to server
+        const reservationData = {
+          tableId: selectedTableId || document.getElementById("tableId").value,
+          userName: document.getElementById("userName").value,
+          userPhone: document.getElementById("userPhone").value,
+          price: parseFloat(document.getElementById("price").value),
+          date: document.getElementById("date").value,
+          timeFrame: document.getElementById("timeFrame").value
+        };
+
+        await fetch('/save-reservation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(reservationData)
+        });
+
+        // 3. Show receipt and success message
+        if (paymentIntent.status === 'succeeded') {
+          paymentMessage.style.color = 'green';
+          paymentMessage.textContent = 'Payment successful! Table reserved.';
+
+          const receiptDetails = `
+            <div id="receiptPopup" style="position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; border-radius: 10px; padding: 20px; z-index: 99999; box-shadow: 0 0 10px rgba(0,0,0,0.3); max-width: 400px; text-align: center;">
+              <h3>Reservation Confirmed</h3>
+              <p><strong>Table:</strong> ${reservationData.tableId}</p>
+              <p><strong>Name:</strong> ${reservationData.userName}</p>
+              <p><strong>Phone:</strong> ${reservationData.userPhone}</p>
+              <p><strong>Date:</strong> ${reservationData.date}</p>
+              <p><strong>Time:</strong> ${reservationData.timeFrame}</p>
+              <p><strong>Amount Paid:</strong> $${(price / 100).toFixed(2)}</p>
+              <button onclick="document.getElementById('receiptPopup').remove()" style="margin-top: 10px; padding: 8px 16px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+            </div>
+          `;
+          document.body.insertAdjacentHTML('beforeend', receiptDetails);
+
+          setTimeout(() => {
+            closeModal();
+            form.reset();
+            cardElement.clear();
+            paymentMessage.textContent = '';
+          }, 3000);
+        }
+      } catch (err) {
+        paymentMessage.style.color = 'red';
+        paymentMessage.textContent = 'Payment failed. Please try again.';
+        console.error(err);
+      }
+    });
+  }
+
+  const checkoutButton = document.getElementById('checkoutButton');
+  if (checkoutButton) {
+    checkoutButton.addEventListener('click', () => {
+      fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          table: selectedTableId,
+          name: document.getElementById('userName').value,
+          phone: document.getElementById('userPhone').value,
+          price: document.getElementById('price').value,
+          date: document.getElementById('date').value,
+          time: document.getElementById('timeFrame').value
+        })
+      })
+      .then(res => res.json())
+      .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+      .catch(err => console.error(err));
+    });
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>
+
+
